@@ -29,21 +29,120 @@
  .question{
   font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 5px;
  }
  .options{
   display: flex;
-  gap: 10px;
+  gap: 20px;
  }
  input{
-  padding-top: 15px ;
+  margin-top: 8px ;
+  font-family: 'Courier New', Courier, monospace;
  }
  .btn{
-  margin: 20px auto;
+   margin: 40px auto;
+   width: 250px;
+  height: 45px;
  }
+ button{
+ width: 150px;
+ height:35px;
+ font-family: 'Courier New', Courier, monospace;
+ font-weight: bold;
+ }
+ span{
+  margin-top: 30px;
+ }
+ .skeleton-loader-three{
+  width: 70%;
+  margin-left: 25px;
+  height: 45px;
+  display: block;
+  border-radius: 19px;
+  background: linear-gradient(	  
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 50px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;	  
+}
+ .skeleton-loader-two{
+  width: 65%;
+  margin-left: 25px;
+  height: 30px;
+  border-radius: 20px;
+  display: block;
+  background: linear-gradient(	  
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 50px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;	  
+}
+ .skeleton-loader-one {
+  width: 60%;
+  margin-left: 25px;
+  border-radius: 18px;
+  height: 25px;
+  display: block;
+  background: linear-gradient(	  
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 50px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;	  
+}
+ .skeleton-loader {
+  width: 55%;
+  margin-left: 25px;
+  height: 15px;
+  display: block;
+  border-radius: 13px;
+  background: linear-gradient(	  
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 50px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;	  
+}
+@keyframes shine {	
+  to {
+    background-position: 100% 0, /* move highlight to right */ 0 0;
+  }
+}
 </style>
 <template>
   <div v-if="loading">
-    Loading...
+    <div>
+  <span class="skeleton-loader"></span>   
+  <span class="skeleton-loader-one"></span> 
+  <span class="skeleton-loader-two"></span> 
+  <span class="skeleton-loader"></span>  
+  <span class="skeleton-loader-three"></span> 
+  <span class="skeleton-loader-one"></span> 
+  <span class="skeleton-loader-three"></span> 
+  <span class="skeleton-loader"></span>  
+</div>
   </div>
   <div v-else-if="error">
     Error: {{ error.message }}
@@ -133,9 +232,9 @@ const countdown = () =>{
     },1000)
   }
 }
-// onMounted(()=>{
-//   countdown()
-// })
+onMounted(()=>{
+  countdown()
+})
 const evaluateAnswers = () => {
   correctAnswersCount.value = data.value.results.filter(qstn => userAnswers.value[qstn.question] === qstn.correct_answer).length;
   const correctCount = correctAnswersCount.value; 

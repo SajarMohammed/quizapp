@@ -1,5 +1,6 @@
 <template>
     <div class="container">  
+      <div class="top_sec">
         <div class="text_sec">
             <h1>Oops...!!  You couldn't Made it</h1>
             <h3>You have Failed in the Quiz</h3>
@@ -7,6 +8,11 @@
        <p>Incorrect Answers : {{ IncorrectAnswers }}</p>
        <p>Average: {{ averaged }}%</p>
         </div>
+        <div class="btn_sec">
+          <h3>Don't Lose Hope...<br/> There is Still A Chance ...</h3>
+          <router-link to="/"><button>Take Quiz Again</button></router-link>
+        </div>
+      </div>
         <div class="image_sec">
            <img :src="Failed" alt=""> 
         </div>
@@ -39,22 +45,21 @@ image_sec{
 }
 img{
   padding-right: 40px;
-  animation-name: popup;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation: popup 5s infinite ease-in-out;
 }
 @keyframes popup {
   0%,100% { transform:  rotate(-8deg); }
   50% {transform:rotate(8deg)}
 }
-.text_sec{
+.top_sec{
   flex:1;
+}
+.text_sec{
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:10px;
+  gap:30px;
 }
 h1{
   letter-spacing: 2px;
@@ -68,5 +73,22 @@ h3{
 p{
     font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
+}
+.btn_sec{
+  margin-top:30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+  text-align: center;
+}
+button{
+  width:150px;
+  height:30px;
+  border-radius: 6px;
+  border: 1px solid black;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
 </style>

@@ -1,14 +1,21 @@
 <template>
   <div class="container">
+   <div class="top_sec">
     <div class="text_sec">
       <h1>Congratulations</h1>
       <h3>You have Passed the Quiz...!!</h3>
        <p>Correct Answers : {{ correctAnswers }}</p>
        <p>Incorrect Answers : {{ IncorrectAnswers }}</p>
-       <p>Average: {{ averaged }}%</p>
-    </div> 
+       <p>Average: {{ averaged }}%</p> 
+    </div>
+  <div class="btn_sec">
+    <h3>Wanna Take the Quiz Once More...?</h3>
+    <router-link to="/"><button>Take Quiz</button></router-link>
+  </div>   <div class="image_area">
+          <img :src="crack" alt="" class="popper">
+       </div></div>
     <div class="image_sec">
-      <img :src="Pass" alt="">
+      <img :src="Pass" alt="" class="avatar">
     </div>
   </div>
     
@@ -17,6 +24,7 @@
 <script setup>
   import { useRoute } from 'vue-router';
   import Pass from "@/assets/pass.jpg"
+  import crack from "@/assets/crackers.png"
   const route = useRoute()
   const correctAnswers = route.query.correctAnswers
   const totalQuestions = 10;
@@ -36,32 +44,42 @@
 .image_sec{
   flex: 1;
 }
-img{
+.avatar{
   padding-right: 20px;
-  animation-name: popup;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation: popup 5s infinite ease-in-out;
 }
 @keyframes popup {
   0%, 100% { transform: translateY(0); }
   50% {transform:translateY(50px)}
 }
-.text_sec{
+.popper{
+  animation: cracker 5s infinite ease-in-out;
+}
+@keyframes cracker {
+  0%, 100% { transform: scale(1); opacity: 0; }
+  50% {transform: scale(1.1); opacity: 1;}
+}
+.top_sec{
   flex:1;
+  position: relative;
+}
+.image_area{
+  position: absolute;
+  top: -60px;
+  left: 450px;
+  z-index: -999;
+}
+.text_sec{
   margin-left:20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:10px;
+  gap:30px;
 }
 h1{
   letter-spacing: 5px;
-  animation-name: scaleup;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation: scaleup 5s infinite ease-in-out;
 }
 @keyframes scaleup {
   0%, 100% { transform: scale(1); }
@@ -75,5 +93,22 @@ h3{
 p{
     font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
+}
+.btn_sec{
+  margin-top:30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+  text-align: center;
+}
+button{
+  width:150px;
+  height:30px;
+  border-radius: 6px;
+  border: 1px solid black;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
 </style>
