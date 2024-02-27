@@ -145,7 +145,7 @@ const url = "https://opentdb.com/api.php?amount=10";
 const data = ref(null);
 const loading = ref(true);
 const error = ref(null);
-const count = ref(10);
+const count = ref(60);
 const correctAnswersCount = ref(0);
 const userAnswers = ref({})
 const isSubmitted = ref(false)
