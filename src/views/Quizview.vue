@@ -186,11 +186,13 @@ const error = ref(null);
 const count = ref(60);
 const correctAnswersCount = ref(0);
 const userAnswers = ref({})
+const isSubmitted = ref(false)
 
 onMounted(async () => {
   try {
     const fetchData = await useFetch(url);
     data.value = fetchData;
+    console.log(data.value.results)
   } catch (err) {
     console.error("Failed to fetch data:", err);
     error.value = err;
@@ -225,8 +227,10 @@ const countdown = () =>{
     setTimeout(()=>{
      count.value--;
      if (count.value == 0) {
+      if(!isSubmitted){
        alert("Time is up")
        router.push("/")
+      }
       } else {
         countdown();
       }
@@ -245,6 +249,7 @@ const evaluateAnswers = () => {
   } else {
     router.push({ name: 'fail', query: { correctAnswers: correctCount } });
   }
+  isSubmitted.value = true;
 };
 
 const combinedQuestions = computed(() => {
