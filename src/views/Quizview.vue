@@ -225,7 +225,8 @@ const countdown = () =>{
     setTimeout(()=>{
      count.value--;
      if (count.value == 0) {
-        evaluateAnswers()
+       alert("Time is up")
+       router.push("/")
       } else {
         countdown();
       }
