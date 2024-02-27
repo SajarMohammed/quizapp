@@ -145,10 +145,12 @@ const url = "https://opentdb.com/api.php?amount=10";
 const data = ref(null);
 const loading = ref(true);
 const error = ref(null);
-const count = ref(60);
+const count = ref(10);
 const correctAnswersCount = ref(0);
 const userAnswers = ref({})
 const isSubmitted = ref(false)
+const timeoutId = ref(null);
+
 
 onMounted(async () => {
   try {
@@ -185,14 +187,12 @@ function shuffle(array) {
   return array;
 }
 const countdown = () =>{
-  if(count.value > 0){
-    setTimeout(()=>{
+  if(count.value > 0 && !isSubmitted.value){
+  const timeoutId =  setTimeout(()=>{
      count.value--;
-     if (count.value == 0) {
-      if(!isSubmitted){
+     if (count.value == 0 && !isSubmitted.value) {
        alert("Time is up")
        router.push("/")
-      }
       } else {
         countdown();
       }
@@ -203,6 +203,8 @@ onMounted(()=>{
   countdown()
 })
 const evaluateAnswers = () => {
+  isSubmitted.value = true;
+  clearTimeout(timeoutId.value)
   correctAnswersCount.value = data.value.results.filter(qstn => userAnswers.value[qstn.question] === qstn.correct_answer).length;
   const correctCount = correctAnswersCount.value; 
   const passed = correctCount >= data.value.results.length / 2; 
@@ -211,7 +213,7 @@ const evaluateAnswers = () => {
   } else {
     router.push({ name: 'fail', query: { correctAnswers: correctCount } });
   }
-  isSubmitted.value = true;
+
 };
 
 const combinedQuestions = computed(() => {
