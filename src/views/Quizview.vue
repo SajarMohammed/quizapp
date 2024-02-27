@@ -52,67 +52,29 @@
  }
  span{
   margin-top: 30px;
- }
- .skeleton-loader-three{
+ } .skeleton-loader--one{
+  width: 55%;
+  height: 20px;
+  border-radius: 13px;	  
+}
+ .skeleton-loader--four{
   width: 70%;
-  margin-left: 25px;
   height: 45px;
-  display: block;
-  border-radius: 19px;
-  background: linear-gradient(	  
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 80%
-    ),
-    lightgray;
-  background-repeat: repeat-y;
-  background-size: 50px 500px;
-  background-position: 0 0;
-  animation: shine 1s infinite;	  
+  border-radius: 19px;	  
 }
- .skeleton-loader-two{
+ .skeleton-loader--three{
   width: 65%;
-  margin-left: 25px;
   height: 30px;
-  border-radius: 20px;
-  display: block;
-  background: linear-gradient(	  
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 80%
-    ),
-    lightgray;
-  background-repeat: repeat-y;
-  background-size: 50px 500px;
-  background-position: 0 0;
-  animation: shine 1s infinite;	  
+  border-radius: 20px;	  
 }
- .skeleton-loader-one {
+ .skeleton-loader--two {
   width: 60%;
-  margin-left: 25px;
   border-radius: 18px;
   height: 25px;
-  display: block;
-  background: linear-gradient(	  
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 80%
-    ),
-    lightgray;
-  background-repeat: repeat-y;
-  background-size: 50px 500px;
-  background-position: 0 0;
-  animation: shine 1s infinite;	  
 }
  .skeleton-loader {
-  width: 55%;
   margin-left: 25px;
-  height: 15px;
   display: block;
-  border-radius: 13px;
   background: linear-gradient(	  
       to right,
       rgba(255, 255, 255, 0),
@@ -134,14 +96,14 @@
 <template>
   <div v-if="loading">
     <div>
-  <span class="skeleton-loader"></span>   
-  <span class="skeleton-loader-one"></span> 
-  <span class="skeleton-loader-two"></span> 
-  <span class="skeleton-loader"></span>  
-  <span class="skeleton-loader-three"></span> 
-  <span class="skeleton-loader-one"></span> 
-  <span class="skeleton-loader-three"></span> 
-  <span class="skeleton-loader"></span>  
+  <span class="skeleton-loader skeleton-loader--one"></span>   
+  <span class="skeleton-loader skeleton-loader--two"></span> 
+  <span class="skeleton-loader skeleton-loader--three"></span> 
+  <span class="skeleton-loader skeleton-loader--one"></span>  
+  <span class="skeleton-loader skeleton-loader--four"></span> 
+  <span class="skeleton-loader skeleton-loader--two"></span> 
+  <span class="skeleton-loader skeleton-loader--four"></span> 
+  <span class="skeleton-loader skeleton-loader--one"></span>  
 </div>
   </div>
   <div v-else-if="error">
